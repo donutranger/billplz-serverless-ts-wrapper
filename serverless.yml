@@ -31,8 +31,11 @@ functions:
           method: post
 
 plugins:
-- serverless-offline
+  - serverless-offline
+  - serverless-plugin-typescript
 
 custom:
   serverless-offline:
     httpPort: 8000
+  serverlessPluginTypescript:
+    tsConfigFileLocation: './tsconfig.build.json'
