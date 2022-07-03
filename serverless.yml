@@ -8,6 +8,8 @@ provider:
   runtime: nodejs14.x
   environment:
     BILLPLZ_KEY: c7377ec0-50a6-4436-a8fb-19b3386cece6
+  httpApi:
+    cors: true
 
 functions:
   hello:
@@ -20,8 +22,18 @@ functions:
     handler: billplz.getBill
     events:
       - httpApi:
-          path: /getBill
+          path: /getBill/{id}
           method: get
+  createBill:
+    handler:  billplz.createBill
+    events:
+      - httpApi:
+          path: /createBill
+          method: post
 
 plugins:
-  - serverless-plugin-typescript
+- serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 8000
