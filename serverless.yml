@@ -6,10 +6,9 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
-  environment:
-    BILLPLZ_KEY: c7377ec0-50a6-4436-a8fb-19b3386cece6
   httpApi:
     cors: true
+  environment: ${file(env.${opt:stage, self:provider.stage}.json)}
 
 functions:
   hello:
