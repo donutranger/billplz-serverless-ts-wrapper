@@ -1,4 +1,4 @@
-interface BillArgs {
+export interface BillArgs {
     collection_id: string;
     email: string;
     mobile: string;

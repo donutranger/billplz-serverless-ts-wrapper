@@ -11,20 +11,14 @@ provider:
   environment: ${file(env.${opt:stage, self:provider.stage}.json)}
 
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - httpApi:
-          path: /
-          method: get
   getBill:
-    handler: billplz.getBill
+    handler: handlers.getBill
     events:
       - httpApi:
           path: /getBill/{id}
           method: get
   createBill:
-    handler:  billplz.createBill
+    handler:  handlers.createBill
     events:
       - httpApi:
           path: /createBill
@@ -37,5 +31,4 @@ plugins:
 custom:
   serverless-offline:
     httpPort: 8000
-  serverlessPluginTypescript:
     tsConfigFileLocation: './tsconfig.build.json'
