@@ -46,31 +46,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 var node_fetch_1 = require("node-fetch");
+var API_KEY = Buffer.from((_a = process.env.API_KEY) !== null && _a !== void 0 ? _a : "", "utf8").toString("base64");
+var API_ENDPOINT = process.env.API_ENDPOINT;
+var COLLECTION_ID = process.env.API_COLLECTION;
 module.exports.getBill = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, encoded, response, res;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var id, response, res;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
                 id = event.pathParameters.id;
-                encoded = Buffer.from((_a = process.env.API_KEY) !== null && _a !== void 0 ? _a : "", "utf8").toString("base64");
-                return [4 /*yield*/, (0, node_fetch_1.default)("".concat(process.env.API_ENDPOINT, "bills/").concat(id), {
+                return [4 /*yield*/, (0, node_fetch_1.default)("".concat(API_ENDPOINT, "bills/").concat(id), {
                         method: "GET",
                         // KIV: Disable this once on prod
                         mode: "cors",
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
-                            Authorization: "Basic " + encoded,
+                            Authorization: "Basic " + API_KEY,
                         },
                     })];
             case 1:
-                response = _b.sent();
+                response = _a.sent();
                 return [4 /*yield*/, response.json()];
             case 2:
-                res = _b.sent();
+                res = _a.sent();
                 return [2 /*return*/, {
                         statusCode: 200,
                         body: JSON.stringify({
@@ -81,35 +83,44 @@ module.exports.getBill = function (event) { return __awaiter(void 0, void 0, voi
     });
 }); };
 module.exports.createBill = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-    var args, encoded, response, res;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var args, response, res;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                args = __assign(__assign({}, JSON.parse(event.body)), { collection_id: process.env.API_COLLECTION });
-                encoded = Buffer.from((_a = process.env.API_KEY) !== null && _a !== void 0 ? _a : "", "utf8").toString("base64");
-                return [4 /*yield*/, (0, node_fetch_1.default)("".concat(process.env.API_ENDPOINT, "bills"), {
+                args = __assign(__assign({}, JSON.parse(event.body)), { collection_id: COLLECTION_ID });
+                return [4 /*yield*/, (0, node_fetch_1.default)("".concat(API_ENDPOINT, "bills"), {
                         method: "POST",
                         // KIV: Disable this once on prod
                         mode: "cors",
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json",
-                            Authorization: "Basic " + encoded,
+                            Authorization: "Basic " + API_KEY,
                         },
                         redirect: "",
                         body: JSON.stringify(args),
                     })];
             case 1:
-                response = _b.sent();
+                response = _a.sent();
                 return [4 /*yield*/, response.json()];
             case 2:
-                res = _b.sent();
+                res = _a.sent();
                 return [2 /*return*/, {
                         statusCode: 200,
                         body: JSON.stringify(res),
                     }];
         }
+    });
+}); };
+module.exports.processBill = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        console.log(event.body);
+        return [2 /*return*/, {
+                statusCode: 200,
+                body: JSON.stringify({
+                    message: "OK",
+                }),
+            }];
     });
 }); };
 //# sourceMappingURL=handlers.js.map

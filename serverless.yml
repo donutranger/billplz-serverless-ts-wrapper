@@ -23,6 +23,13 @@ functions:
       - httpApi:
           path: /createBill
           method: post
+  processBill:
+    handler: handlers.processBill
+    events:
+      - httpApi:
+        path: /processBill
+        method: get
+        
 
 plugins:
   - serverless-offline
