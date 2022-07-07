@@ -1,7 +1,7 @@
 org: donutranger
 app: haris-be
 service: mh-billplz
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
   name: aws
@@ -18,11 +18,17 @@ functions:
           path: /getBill/{id}
           method: get
   createBill:
-    handler:  handlers.createBill
+    handler: handlers.createBill
     events:
       - httpApi:
           path: /createBill
           method: post
+  processBill:
+    handler: handlers.processBill
+    events:
+      - httpApi:
+          path: /processBill
+          method: get
 
 plugins:
   - serverless-offline
@@ -31,4 +37,4 @@ plugins:
 custom:
   serverless-offline:
     httpPort: 8000
-    tsConfigFileLocation: './tsconfig.build.json'
+    tsConfigFileLocation: "./tsconfig.build.json"
