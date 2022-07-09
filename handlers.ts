@@ -35,6 +35,8 @@ module.exports.createBill = async (event) => {
   const args: BillArgs = {
     ...JSON.parse(event.body),
     collection_id: COLLECTION_ID,
+    callback_url:
+      "http://localhost:8000/processBill",
   };
 
   const response = await fetch(`${API_ENDPOINT}bills`, {

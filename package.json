@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "serverless-offline": "^8.8.0",
