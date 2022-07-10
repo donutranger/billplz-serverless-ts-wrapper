@@ -8,23 +8,37 @@ provider:
   runtime: nodejs14.x
   httpApi:
     cors: true
-  environment: ${file(env.${opt:stage, self:provider.stage}.json)}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+          Resource:
+            - Fn::GetAtt: [BillTable, Arn]
+  environment:
+    BILL_TABLE: ${self:custom.tableName}
 
 functions:
   getBill:
     handler: handlers.getBill
+    environment: ${file(env.${opt:stage, self:provider.stage}.json)}
     events:
       - httpApi:
           path: /getBill/{id}
           method: get
   createBill:
     handler: handlers.createBill
+    environment: ${file(env.${opt:stage, self:provider.stage}.json)}
     events:
       - httpApi:
           path: /createBill
           method: post
   processBill:
     handler: handlers.processBill
+    environment: ${file(env.${opt:stage, self:provider.stage}.json)}
     events:
       - httpApi:
           path: /processBill
@@ -35,6 +49,21 @@ plugins:
   - serverless-plugin-typescript
 
 custom:
+  tableName: "bill-table-${sls:stage}"
   serverless-offline:
     httpPort: 8000
     tsConfigFileLocation: "./tsconfig.build.json"
+
+resources:
+  Resources:
+    BillTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: txnId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: txnId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.tableName}
