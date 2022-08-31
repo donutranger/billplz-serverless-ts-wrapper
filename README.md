@@ -17,12 +17,12 @@ Use `npx` at the beginning of the command so that the local project version of s
 ## API Usage
 
 ### `/getBill/{id}`
-Method: `GET`
+Method: `GET`\n
 Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/getBill/cdmntpfi`
 
 ### `/createBill`
-Method: `POST`
-Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/createBill`
+Method: `POST`\n
+Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/createBill`\n
 Include in the body params:
 ```
 {
