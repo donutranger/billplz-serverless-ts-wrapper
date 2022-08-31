@@ -18,8 +18,7 @@ Use `npx` at the beginning of the command so that the local project version of s
 
 ### `/getBill/{id}`
 Method: `GET`
-Example: 
-`https://sea68v01x9.execute-api.us-east-1.amazonaws.com/getBill/cdmntpfi`
+Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/getBill/cdmntpfi`
 
 ### `/createBill`
 Method: `POST`
