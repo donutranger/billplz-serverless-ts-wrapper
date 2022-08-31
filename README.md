@@ -11,8 +11,8 @@ Commands for deployment:
 Use `npx` at the beginning of the command so that the local project version of serverless is used.
 
 ## Endpoints
-- dev endpoint**: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com`
-- prod endpoint**: `https://cituu4geo5.execute-api.us-east-1.amazonaws.com`
+- **dev endpoint**: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com`
+- **prod endpoint**: `https://cituu4geo5.execute-api.us-east-1.amazonaws.com`
 
 ## API Usage
 
