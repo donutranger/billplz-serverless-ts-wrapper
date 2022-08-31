@@ -7,7 +7,7 @@ Commands for deployment:
 - dev: `npx serverless deploy --stage dev`
 - prod: `npx serverless deploy --stage prod`
 
-**Important**: 
+**Important**:<br />
 Use `npx` at the beginning of the command so that the local project version of serverless is used.
 
 ## Endpoints
@@ -17,12 +17,12 @@ Use `npx` at the beginning of the command so that the local project version of s
 ## API Usage
 
 ### `/getBill/{id}`
-Method: `GET`\n
+Method: `GET`<br />
 Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/getBill/cdmntpfi`
 
 ### `/createBill`
-Method: `POST`\n
-Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/createBill`\n
+Method: `POST`<br />
+Example: `https://sea68v01x9.execute-api.us-east-1.amazonaws.com/createBill`<br />
 Include in the body params:
 ```
 {
