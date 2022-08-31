@@ -24,21 +24,18 @@ provider:
 functions:
   getBill:
     handler: handlers.getBill
-    environment: ${file(env.${opt:stage, self:provider.stage}.json)}
     events:
       - httpApi:
           path: /getBill/{id}
           method: get
   createBill:
     handler: handlers.createBill
-    environment: ${file(env.${opt:stage, self:provider.stage}.json)}
     events:
       - httpApi:
           path: /createBill
           method: post
   processBill:
     handler: handlers.processBill
-    environment: ${file(env.${opt:stage, self:provider.stage}.json)}
     events:
       - httpApi:
           path: /processBill
@@ -47,6 +44,7 @@ functions:
 plugins:
   - serverless-offline
   - serverless-plugin-typescript
+  - serverless-dotenv-plugin
 
 custom:
   tableName: "bill-table-${sls:stage}"
