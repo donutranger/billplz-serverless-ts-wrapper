@@ -4,8 +4,11 @@ Installation options:
 1. `npm install -g serverless`
 
 Commands for deployment:
-- dev: `npx serverless deploy --stage dev`
-- prod: `npx serverless deploy --stage prod`
+- dev: `serverless deploy --stage dev`
+- prod: `serverless deploy --stage prod`
+
+To debug locally/offline run:<br />
+`serverless offline --stage {your choice of stage}`
 
 **Important**:<br />
 Use `npx` at the beginning of the command so that the local project version of serverless is used.
